@@ -119,11 +119,13 @@ class _BmiCalculatorState extends State<BmiCalculator> {
                             backgroundColor: Colors.blue,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8.0))),
+                        // Event klik button untuk menghitung BMI
                         onPressed: () {
                           setState(() {
                             height = double.parse(heightController.value.text);
                             weight = double.parse(weightController.value.text);
                           });
+                          // Panggil method untuk menghitung BMI
                           calculateBmi(height, weight);
                         },
                         child: Text(
@@ -182,6 +184,7 @@ class _BmiCalculatorState extends State<BmiCalculator> {
 // Deklarasai method untuk mendapatkan kesimpulan BMI
   void getConclusionBmi(double finalResult) {
     String finalConclusion = '';
+    // Buat kondisi untuk menentukan hasil akhir
     if (finalResult < 15) {
       finalConclusion = 'anda sangat kurus';
     } else if (finalResult < 15.9) {
