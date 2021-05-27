@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:wahid_romdhoni/criteria_list_view.dart';
 
 void main() {
   runApp(MyApp());
@@ -68,6 +69,29 @@ class _BmiCalculatorState extends State<BmiCalculator> {
                     ],
                   ),
                   SizedBox(height: 20.0),
+                  // Tambahkan Button Kriteria
+                  SizedBox(height: 10.0),
+                  Container(
+                    width: double.infinity,
+                    height: 50.0,
+                    margin: EdgeInsets.only(
+                        left: 30.0, top: 0, right: 30.0, bottom: 20.0),
+                    child: ElevatedButton(
+                      child: Text('Lihat List Kriteria BMI'),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => CriteriaListView()),
+                        );
+                      },
+                      style: TextButton.styleFrom(
+                          backgroundColor: Colors.blueGrey,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8.0))),
+                      // Event klik button untuk menghitung BMI
+                    ),
+                  ),
                   Text(
                     "Tinggi anda (dalam cm) : ",
                     style: TextStyle(
@@ -187,9 +211,7 @@ class _BmiCalculatorState extends State<BmiCalculator> {
     // Buat kondisi untuk menentukan hasil akhir
     if (finalResult < 15) {
       finalConclusion = 'anda sangat kurus';
-    } else if (finalResult < 15.9) {
-      finalConclusion = 'anda sangat berat';
-    } else if (finalResult < 18.4) {
+    } else if (finalResult < 19.9) {
       finalConclusion = 'berat badan anda kurang';
     } else if (finalResult < 24.9) {
       finalConclusion = 'berat badan anda normal';
