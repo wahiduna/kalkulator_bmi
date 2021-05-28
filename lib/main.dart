@@ -1,29 +1,39 @@
+// Mengimport/memanggil library pihak ketiga milik flutter
+// library material digunakan  untuk mengimplementasikan material design pada widget flutter
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+// Mengimport/memanggil library wahid_romdhoni(milik kita sendiri) yang ada pada file criteria_list_view.dart
 import 'package:wahid_romdhoni/criteria_list_view.dart';
 
+// Method main() merupakan method yang pertama kali dijalankan ketika aplikasi dijalankan
 void main() {
+  // Memanggil class MyApp untuk dijalankan pertama kali
   runApp(MyApp());
 }
 
+// Class MyApp extends ke StatelessWidget yang artinya widget tersebut dimuat secara statis dimana seluruh konfigurasi yang dimuat didalamnya telah diinisiasikan sejak awal widget tersebut dimuat sehingga tidak dapat diubah dan tidak akan pernah berubah
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
+  // Method build() merupakan method milik StatelessWidget yang wajib di definisikan beserta dengan argument BuildContext
   Widget build(BuildContext context) {
+    // menerapkan style material design
     return MaterialApp(
+      // Memanggil class BMICalculator
       home: BmiCalculator(),
     );
   }
 }
 
-// Make stateful widget
+// Class BmiCalculator merupakan class yang akan dipanggil ketika build aplikasi
 class BmiCalculator extends StatefulWidget {
+  // Membuat constructor
   BmiCalculator({Key key}) : super(key: key);
 
   @override
+  // membuat state calculator
   _BmiCalculatorState createState() => _BmiCalculatorState();
 }
 
+// Membuat class yang extend ke class State agar dapat synchronous saat widget build
 class _BmiCalculatorState extends State<BmiCalculator> {
   //Deklarasi Variabel
   String result = '';
@@ -35,14 +45,18 @@ class _BmiCalculatorState extends State<BmiCalculator> {
   TextEditingController heightController = TextEditingController();
   TextEditingController weightController = TextEditingController();
   @override
+  // Membuat widget flutter, setiap widget dalam flutter dibuat dari build method
   Widget build(BuildContext context) {
+    // Bungkus ui dari widget kedalam container
     return Container(
       child: Scaffold(
         // Membuat App Bar
         appBar: AppBar(
+          // Judul App Bar
           title: Text('Kalkulator BMI by Wahid Romdhoni',
               style: TextStyle(color: Colors.white)),
           elevation: 0.0,
+          // Set background App Bar menjadi berwarna Biru
           backgroundColor: Colors.blue,
           actions: [
             // Tambahkan icon gear
@@ -54,14 +68,18 @@ class _BmiCalculatorState extends State<BmiCalculator> {
                 onPressed: () {})
           ],
         ),
+        // Tambah scrool view untuk menampung widget
         body: SingleChildScrollView(
+          // Tambah widget  padding untuk atur jarak ruang antar border dan konten
           child: Padding(
+            // Atur padding atas - bawah, kanan - kiri = 12.0
             padding: const EdgeInsets.all(12.0),
+            // Tambah widget column untuk menempatkan widget secara menurun atau vertical
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Tambahkan Widget Image
+                  // Tambahkan Widget Row untuk menempatkan gambar logo
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
@@ -69,7 +87,7 @@ class _BmiCalculatorState extends State<BmiCalculator> {
                     ],
                   ),
                   SizedBox(height: 20.0),
-                  // Tambahkan Button Kriteria
+                  // Tambahkan Button List kriteria
                   SizedBox(height: 10.0),
                   Container(
                     width: double.infinity,
@@ -78,6 +96,7 @@ class _BmiCalculatorState extends State<BmiCalculator> {
                         left: 30.0, top: 0, right: 30.0, bottom: 20.0),
                     child: ElevatedButton(
                       child: Text('Lihat List Kriteria BMI'),
+                      // Event klik button ke CriteriaListView
                       onPressed: () {
                         Navigator.push(
                           context,
@@ -85,11 +104,11 @@ class _BmiCalculatorState extends State<BmiCalculator> {
                               builder: (context) => CriteriaListView()),
                         );
                       },
+                      // Styling button
                       style: TextButton.styleFrom(
                           backgroundColor: Colors.blueGrey,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8.0))),
-                      // Event klik button untuk menghitung BMI
                     ),
                   ),
                   Text(
