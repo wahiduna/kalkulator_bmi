@@ -41,7 +41,7 @@ class CriteriaList extends StatelessWidget {
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             if (snapshot.hasData) {
               // print(_name(snapshot.data[0]));
-              // Buat ListView
+              // Buat Widget ListView
               return ListView.builder(
                   // Membuat padding
                   padding: EdgeInsets.all(8),
